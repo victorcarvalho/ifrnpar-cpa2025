@@ -1,30 +1,45 @@
-# IFRN CPA Report (Static)
+# Relatório de Autoavaliação IFRN - Página Estática
 
-Static single-page report meant to be served via GitHub Pages or any static host.
+Esta é uma página web estática que apresenta uma versão visual do conteúdo do Relatório de Autoavaliação Institucional 2025 do IFRN - Campus Parnamirim.
 
-To publish on GitHub Pages:
+Acesso online: https://victorcarvalho.github.io/ifrnpar-cpa2025/
 
-1. Create a repository on GitHub and push this folder as the repository root.
-2. In the repository settings, enable **Pages** and set source to the `main` branch and root (`/`).
-3. Add a `.nojekyll` file at the repo root to prevent Jekyll processing (optional but recommended).
 
-Quick git commands:
+O conteúdo apresentado aqui foi extraído e organizado a partir do arquivo oficial `AAI 2025.pdf` (incluído neste repositório). Os dados exibidos devem ser validados sempre junto à fonte oficial antes de qualquer uso decisório.
+
+Publicação no GitHub Pages
+
+1. Crie um repositório no GitHub e envie (push) o conteúdo desta pasta como raiz do repositório.
+2. Em **Settings > Pages**, selecione a branch `main` e o diretório raiz (`/`) como fonte.
+3. Aguarde alguns minutos até a URL ser disponibilizada.
+
+Comandos rápidos (substitua `USERNAME/REPO`):
 
 ```bash
 git init
 git add .
-git commit -m "Initial commit: static report"
+git commit -m "Initial commit: página estática do AAI 2025"
 git branch -M main
 git remote add origin git@github.com:USERNAME/REPO.git
 git push -u origin main
 ```
 
-Optional: use `gh` CLI to create and push in one step:
+Ou crie e publique em um passo com o GitHub CLI:
 
 ```bash
 gh repo create USERNAME/REPO --public --source=. --remote=origin --push
 ```
 
-Notes:
-- The page uses CDN-hosted Tailwind, Chart.js and FontAwesome. For production pin versions or vend those assets.
-- The HTML keeps pt-BR numeric formatting (comma decimals) for display; JS parsing is tolerant to that format.
+Observações
+
+- Arquivos estáticos (Tailwind, Chart.js, FontAwesome) são carregados via CDN. Para produção recomenda-se travar versões ou servir localmente.
+- O arquivo `AAI 2025.pdf` incluído é a referência oficial; verifique-o para confirmar números e trechos antes de republicar.
+- Para testes locais, use um servidor estático simples (por exemplo `python -m http.server 8000`).
+
+Contato
+
+Se quiser que eu faça o push para um repositório remoto ou habilite o GitHub Pages, me informe a URL do repositório ou autorize a criação com `gh`.
+
+## Nota sobre prototipagem
+
+Esta página foi prototipada com auxílio de inteligência artificial — a versão inicial visual foi criada usando o Gemini 3.8 Flash como ponto de partida e posteriormente refinada no HTML/CSS/JS do repositório.
