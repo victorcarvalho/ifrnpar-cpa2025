@@ -414,7 +414,7 @@
             </div>
             
             <div class="h-64 relative">
-              <canvas id="participationChart"></canvas>
+              <canvas id="participationChart" class="w-full h-full"></canvas>
             </div>
 
             <div class="pt-2 text-xs text-slate-500 leading-relaxed border-t border-slate-100">
@@ -1643,7 +1643,7 @@
         const rateNumeric = parseFloat(String(item.rate).replace(/[\.\s%]/g, '').replace(',', '.')) || 0;
         if (rateNumeric >= 30) {
           badgeHtml = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Alta adesão</span>';
-        } else if (rateVal > 0) {
+        } else if (rateNumeric > 0) {
           badgeHtml = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">Média</span>';
         } else {
           badgeHtml = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-500">Sem respostas</span>';
@@ -1654,7 +1654,7 @@
         tr.innerHTML = `
           <td class="px-4 py-2.5 font-semibold text-slate-800">${item.course}</td>
           <td class="px-3 py-2.5 text-center text-slate-500">${item.universe}</td>
-          <td class="px-3 py-2.5 text-center font-bold text-slate-800">${item.respondents ?? item.respondents ?? item.respondents}</td>
+          <td class="px-3 py-2.5 text-center font-bold text-slate-800">${item.respondents}</td>
           <td class="px-3 py-2.5 text-right font-semibold text-ifrn-green">${item.rate}</td>
           <td class="px-4 py-2.5 text-center">${badgeHtml}</td>
         `;
@@ -1760,47 +1760,47 @@
         const dataset = [464, 41, 24, 5];
         const computedTotal = dataset.reduce((s, v) => s + (Number(v) || 0), 0) || 1;
         new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Estudantes (464)', 'Docentes (41)', 'Técnicos TAE (24)', 'Sociedade Civil (5)'],
-          datasets: [{
-            data: [464, 41, 24, 5],
-            backgroundColor: [
-              '#f59e0b', // amber
-              '#059669', // emerald
-              '#2563eb', // blue
-              '#e11d48'  // rose
-            ],
-            borderWidth: 2,
-            borderColor: '#ffffff'
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                boxWidth: 12,
-                padding: 12,
-                font: { size: 11, family: 'Inter' }
-              }
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  const value = context.parsed;
-                  const percentage = ((value / computedTotal) * 100).toFixed(1);
-                  return ` ${context.label}: ${value} respondentes (${percentage}%)`;
+          type: 'doughnut',
+          data: {
+            labels: ['Estudantes (464)', 'Docentes (41)', 'Técnicos TAE (24)', 'Sociedade Civil (5)'],
+            datasets: [{
+              data: [464, 41, 24, 5],
+              backgroundColor: [
+                '#f59e0b', // amber
+                '#059669', // emerald
+                '#2563eb', // blue
+                '#e11d48'  // rose
+              ],
+              borderWidth: 2,
+              borderColor: '#ffffff'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '68%',
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  boxWidth: 12,
+                  padding: 12,
+                  font: { size: 11, family: 'Inter' }
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const value = context.parsed;
+                    const percentage = ((value / computedTotal) * 100).toFixed(1);
+                    return ` ${context.label}: ${value} respondentes (${percentage}%)`;
+                  }
                 }
               }
             }
-          },
-          cutout: '68%'
-        }
+          }
+        });
       }
-      });
     });
   </script>
 </body>
